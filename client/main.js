@@ -1,35 +1,34 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
+import {Items} from '../imports/api/items.js'
 
-import './main.html';
+Template.itemslist.helpers({
+  items:function(){
+    // Mongo.items.insert({name:"inline"})
+    itemslist = Items.find({},{ sort: { addedAt: -1 } }).fetch();
+    // console.log(itemslist)
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
+    return itemslist;
+  }
+})
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
+Template.itemslist.events({
+  'click .remove_btn'(){
+    Items.remove(this._id)
   },
-});
+  'click li'(){
+    Items.update({_id:this._id},{$set:{checked:!this.checked}})
+  }
+})
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
+Template.addform.events({
+  'submit #addform'(event){
+    event.preventDefault();
 
+    const target = event.target
+    const text = target.text.value;
 
-Template.login.events({
-    'click .login-facebook': function(e) {
-        e.preventDefault();
+    Items.insert({name:text,addedAt:new Date()})
 
-        Meteor.loginWithFacebook({requestPermissions: ['public_profile', 'email']}, function(err){
-            if (err) {
-                console.log('Handle errors here: ', err);
-            }
-        });
-    }
-});
+    // Clear form
+    target.text.value = '';
+  }
+})
