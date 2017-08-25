@@ -20,3 +20,16 @@ Template.hello.events({
     instance.counter.set(instance.counter.get() + 1);
   },
 });
+
+
+Template.login.events({
+    'click .login-facebook': function(e) {
+        e.preventDefault();
+
+        Meteor.loginWithFacebook({requestPermissions: ['public_profile', 'email']}, function(err){
+            if (err) {
+                console.log('Handle errors here: ', err);
+            }
+        });
+    }
+});
