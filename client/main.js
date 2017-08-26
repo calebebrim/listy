@@ -5,7 +5,7 @@ Template.itemslist.helpers({
     // Mongo.items.insert({name:"inline"})
     itemslist = Items.find({},{ sort: { addedAt: -1 } }).fetch();
     // console.log(itemslist)
-
+    $(".progress").hide();
     return itemslist;
   }
 })

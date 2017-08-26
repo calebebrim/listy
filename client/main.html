@@ -1,17 +1,53 @@
 <head>
-  <title>listaCompras</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <title>Lista de Compras</title>
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+     <!--Import materialize.css-->
+     <!-- <link type="text/css" rel="stylesheet" href="./materialize/css/materialize.min.css"  media="screen,projection"/> -->
+
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
 <body>
-  {{> itemslist}}
+  <nav>
+    <div class="nav-wrapper">
+      <div class="container">
+        <a href="#" class="brand-logo">Listinha</a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <!-- <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">JavaScript</a></li> -->
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <div class="container">
+
+    <!-- {{> navbar}} -->
+    {{> itemslist}}
+  </div>
+  <!-- <div class="wrapper">
+    {{> control}}
+    {{> examplecontent}}
+    {{> itemslist}}
+  </div> -->
+
+  <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
+  <!-- <script type="text/javascript" src="./materialize/js/materialize.min.js"></script> -->
 </body>
 
 
 <template name="itemslist">
-  <h1>Lista de compras!</h1>
-  <h2>insira os itens usando o campo abaixo</h2>
+
   {{> addform}}
-  <ul>
+  <div class="progress">
+      <div class="indeterminate"></div>
+  </div>
+  <ul class="collection">
     {{#each items}}
       {{> item}}
     {{/each}}
@@ -20,14 +56,32 @@
 
 
 <template name="item">
-  <li class="{{#if checked}}checked{{/if}}">
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
-    <span class="">{{name}}</span>  <button class="remove_btn">comprei</button>
+  <li class="{{#if checked}}active{{/if}} collection-item">
+    <div>{{name}}
+      <a href="#!" class="secondary-content">
+        <i class="material-icons right remove_btn ">done</i>
+      </a>
+    </div>
+
+
+        <!-- <span class="">{{name}}</span> <button class="remove_btn">comprei</button>
+      </div>
+    </div> -->
   </li>
 </template>
 
 <template name="addform">
   <form id="addform">
-    <input type="text" name="text" placeholder="nome do item" />
+    <div class="form-group">
+
+      <div class="input-field col s6">
+        <i class="material-icons prefix">mode_edit</i>
+        <!-- <i class="material-icons prefix">account_circle</i> -->
+        <!-- <input id="icon_prefix" type="text" class="validate"> -->
+        <input id="icon_prefix" type="text" class="validate" name="text"  />
+
+        <label for="icon_prefix">Nome do item:</label>
+      </div>
+    </div>
   </form>
 </template>
