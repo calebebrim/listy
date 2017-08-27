@@ -1,5 +1,5 @@
 <head>
-  
+
   <title>Lista de Compras</title>
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
      <!--Import materialize.css-->
@@ -10,23 +10,9 @@
 </head>
 
 <body>
-  <nav>
-    <div class="nav-wrapper">
-      <div class="container">
-        <a href="#" class="brand-logo">Listinha</a>
-
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <!-- <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li> -->
-        </ul>
-      </div>
-
-    </div>
-  </nav>
+  {{> navbar}}
   <div class="container">
-
-    <!-- {{> navbar}} -->
+    {{> addform}}
     {{> itemslist}}
   </div>
   <!-- <div class="wrapper">
@@ -42,7 +28,7 @@
 
 <template name="itemslist">
 
-  {{> addform}}
+
   <div class="progress">
       <div class="indeterminate"></div>
   </div>
@@ -71,16 +57,11 @@
 
 <template name="addform">
   <form id="addform">
-    <div class="form-group">
-
-      <div class="input-field col s6">
-        <i class="material-icons prefix">mode_edit</i>
-        <!-- <i class="material-icons prefix">account_circle</i> -->
-        <!-- <input id="icon_prefix" type="text" class="validate"> -->
-        <input id="icon_prefix" type="text" class="validate" name="text"  />
-
-        <label for="icon_prefix">Nome do item:</label>
-      </div>
+    <div class="form-group row">
+      <div class="input-field">
+        <input id="itemname" type="text" class="validate" name="text"  />
+        <label for="itemname">Nome do item:</label>
+      </div>  
     </div>
   </form>
 </template>
